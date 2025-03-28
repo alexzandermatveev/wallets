@@ -1,0 +1,10 @@
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/test_case_db
+    username: username123
+    password: username123
+  liquibase:
+    enabled: true
+  sql:
+    init:
+      mode: always
