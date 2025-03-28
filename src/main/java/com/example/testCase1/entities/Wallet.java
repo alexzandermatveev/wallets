@@ -1,18 +1,16 @@
 package com.example.testCase1.entities;
 
-import com.example.testCase1.enums.OperationType;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 
 import java.util.UUID;
 
-@AllArgsConstructor
-@RequiredArgsConstructor
-@Getter
-@Setter
+@NoArgsConstructor
+@Data
 public class Wallet {
-    private final UUID walletId;
+    @Id
+    private  UUID walletId;
     private double balance;
+    private String walletHolder;
 }

@@ -13,7 +13,6 @@ import reactor.core.publisher.Mono;
 import java.util.UUID;
 
 @RestController
-@RequestMapping
 @RequiredArgsConstructor
 public class WalletController {
     private final WalletService walletService;
@@ -22,8 +21,7 @@ public class WalletController {
     @PostMapping("/api/v1/wallet")
     public Mono<ResponseEntity<Object>> newOperarion(@Valid @RequestBody OperationRequest request){
         return walletService.performOperation(request)
-                .then(Mono.just(ResponseEntity.ok().build()))
-                .onErrorResume(e -> Mono.just(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()));
+                .then(Mono.just(ResponseEntity.ok().build()));
     }
 
     @GetMapping("/wallets/{walletId}")

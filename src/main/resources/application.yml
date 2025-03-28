@@ -1,10 +1,24 @@
+server:
+  port: 8081
+
 spring:
   r2dbc:
-    url: r2dbc:postgresql://localhost:5432/test_case_db
-    username: username123
-    password: username123
+    url: ${R2DBC_URL:r2dbc:postgresql://localhost:5432/test_case_db}
+    username: ${R2DBC_USERNAME:username123}
+    password: ${R2DBC_PASSWORD:username123}
   liquibase:
     enabled: true
+    url: jdbc:postgresql://localhost:5432/test_case_db  # используем JDBC
+    user: username123
+    password: username123
+    driver-class-name: org.postgresql.Driver
+    change-log: ${LIQUIBASE_CHANGELOG:classpath:db/changelog/db.changelog-1.0.xml}
+    drop-first: ${LIQUIBASE_DROP_FIRST:true}
+
   sql:
     init:
       mode: always
+logging:
+  level:
+    liquibase: DEBUG
+

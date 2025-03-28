@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="name">
+        <sql>
+            CREATE TABLE IF NOT EXISTS wallet (
+            wallet_id UUID PRIMARY KEY,
+            balance DOUBLE PRECISION NOT NULL,
+            wallet_holder VARCHAR(255) NOT NULL,
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="2" author="name">
+        <sql>
+            INSERT INTO wallet (wallet_id, balance, wallet_holder) VALUES
+            ('b3d3b16b-e334-4f0e-9a73-c1de14f8d568', 1000.00, 'Wallet Holder'),
+            ('8b2e06e4-77a2-4c9f-8e98-1ef7c1e2db2b', 2000.00, 'Jim Carry'),
+            ('d4057ac0-eed1-41ea-bb6e-bb8ad8a8406b', 500.00, 'Alice Smith'),
+            ('d2b2226b-f383-457a-8eae-b348c7aaf9b5', 1500.00, 'Quentin Tarantino'),
+            ('a9a5be40-bb57-4977-9f6e-1620b174c6ea', 300.00, 'Petrus Red'),
+            ('5d18f098-ff94-4688-9f2f-b37d36f03ed7', 3500.00, 'Chell Puck'),
+            ('1d5e1575-4b0b-47fe-bac6-d47688e25f58', 200.00, 'Eva Green'),
+            ('ce73ac1d-39e1-42d4-9633-0b25698bc05b', 1200.00, 'Ippolit Kuragin'),
+            ('68c19f12-d13a-4d0b-bc80-3e1c63a12615', 2200.00, 'Sancho Panza'),
+            ('a3a6ad85-101d-4e1e-a1f7-e0bc45f712a2', 0.00, 'Nikita Khrushchev');
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
