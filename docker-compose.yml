@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    container_name: test_case_db
+    environment:
+      POSTGRES_USER: username123
+      POSTGRES_PASSWORD: username123
+      POSTGRES_DB: test_case_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  app:
+    build: .
+    container_name: test_case_app
+    ports:
+      - "8081:8081"
+    environment:
+      R2DBC_URL: r2dbc:postgresql://db:5432/test_case_db
+      R2DBC_USERNAME: username123
+      R2DBC_PASSWORD: username123
+      LIQUIBASE_URL: jdbc:postgresql://db:5432/test_case_db
+      LIQUIBASE_DROP_FIRST: true
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local

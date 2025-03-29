@@ -8,9 +8,9 @@ spring:
     password: ${R2DBC_PASSWORD:username123}
   liquibase:
     enabled: true
-    url: jdbc:postgresql://localhost:5432/test_case_db  # используем JDBC
-    user: username123
-    password: username123
+    url: ${LIQUIBASE_URL:jdbc:postgresql://db:5432/test_case_db}
+    user: ${R2DBC_USERNAME:username123}
+    password: ${R2DBC_PASSWORD:username123}
     driver-class-name: org.postgresql.Driver
     change-log: ${LIQUIBASE_CHANGELOG:classpath:db/changelog/db.changelog-1.0.xml}
     drop-first: ${LIQUIBASE_DROP_FIRST:true}
