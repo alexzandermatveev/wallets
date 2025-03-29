@@ -25,13 +25,13 @@ public class ExceptionHandlerAdvice {
 
     @ExceptionHandler(JsonProcessingException.class)  // некорректный JSON
     public ResponseEntity<ErrorResponse> handleJsonProcessingException(JsonProcessingException ex) {
-        ErrorResponse errorResponse = new ErrorResponse("INVALID_JSON", "Невалидный JSON формат.");
+        ErrorResponse errorResponse = new ErrorResponse("INVALID_JSON", "Невалидный JSON формат");
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
 
     @ExceptionHandler(WalletNotFoundException.class)  // кошелек не найден
     public ResponseEntity<ErrorResponse> handleWalletNotFound(WalletNotFoundException ex) {
-        ErrorResponse errorResponse = new ErrorResponse("WALLET_NOT_FOUND", "Кошелек не найден.");
+        ErrorResponse errorResponse = new ErrorResponse("WALLET_NOT_FOUND", "Кошелек не найден");
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 

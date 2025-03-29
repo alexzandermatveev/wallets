@@ -37,8 +37,7 @@ public class WalletService {
         // Проверяем, есть ли кошелек в процессе обработки
         Object lock = walletLockMap.computeIfAbsent(walletId, k -> new Object());  // Если нет, добавляем новый lock объект
 
-        synchronized (lock) {  // Используем synchronized блокировку на уровне объекта для данного кошелька
-            // Внутри блока выполняем операцию синхронно
+        synchronized (lock) {
             return walletRepository.findById(request.getWalletId())
                     .switchIfEmpty(Mono.error(new WalletNotFoundException("Кошелек не найден")))
                     .flatMap(wallet -> {
